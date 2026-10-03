@@ -31,21 +31,35 @@ p9:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Homemade_sweet
 p10:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg/960px-Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg",source:"https://commons.wikimedia.org/wiki/File:Nan,_Noon,_Paan,_Faan-_kolkata.jpg",credit:"TAPAS KUMAR HALDER · CC BY-SA 4.0"}
 };
 function RecipePhoto({recipe,className=""}:{recipe:Recipe;className?:string}){
- const pools:Record<string,string[]>={
-  "Breakfast":[photos.f1.url,photos.f2.url,photos.f3.url,photos.f4.url,photos.f10.url,photos.f11.url,photos.f12.url],
-  "Lunch":[photos.f5.url,photos.f6.url,photos.f7.url,photos.f9.url],
-  "Dinner":[photos.f8.url,photos.f9.url,photos.f5.url,photos.f6.url],
-  "Afternoon Snack":[photos.f10.url,photos.f11.url,photos.f12.url,photos.f3.url],
-  "Salads":[photos.f6.url,photos.f9.url,photos.f5.url,photos.f10.url],
-  "Healthy Pasta":[photos.f5.url,photos.f6.url,photos.f7.url,photos.f9.url],
-  "Smoothies & Shakes":[photos.f12.url,photos.f10.url,photos.f1.url,photos.f11.url],
-  "Healthy Desserts":[photos.p1.url,photos.p2.url,photos.p3.url,photos.p4.url,photos.p5.url],
-  "Healthy Cakes":[photos.p1.url,photos.p2.url,photos.p3.url,photos.p4.url,photos.p5.url],
-  "Fitness Breads":[photos.p6.url,photos.p7.url,photos.p8.url,photos.p9.url,photos.p10.url]
- };
- const pool=pools[recipe.category]||[photos.f6.url];
- const hash=[...recipe.name].reduce((n,ch)=>((n*31)+ch.charCodeAt(0))>>>0,7);
- const src=photos[recipe.id]?.url||pool[hash%pool.length];
+ const text=(recipe.name+" "+recipe.category+" "+recipe.ingredients.join(" ")).toLowerCase();
+ const foodQuery=(()=>{
+  if(text.includes("shrimp"))return "shrimp,pasta,healthy";
+  if(text.includes("salmon"))return "salmon,healthy,meal";
+  if(text.includes("tuna"))return "tuna,healthy,food";
+  if(text.includes("chicken")&&text.includes("pasta"))return "chicken,pasta,healthy";
+  if(text.includes("turkey")&&text.includes("pasta"))return "turkey,pasta,tomato";
+  if(text.includes("pasta")||text.includes("penne")||text.includes("linguine"))return "healthy,pasta,food";
+  if(text.includes("pancake"))return "banana,pancakes,healthy";
+  if(text.includes("egg")&&text.includes("toast"))return "egg,toast,spinach";
+  if(text.includes("avocado")&&text.includes("toast"))return "avocado,toast";
+  if(text.includes("oat")&&text.includes("berry"))return "overnight,oats,berries";
+  if(text.includes("oat"))return "oatmeal,healthy,breakfast";
+  if(text.includes("smoothie")||text.includes("shake"))return "fruit,smoothie,healthy";
+  if(text.includes("salad"))return "healthy,salad,bowl";
+  if(text.includes("wrap"))return "healthy,wrap,food";
+  if(text.includes("soup"))return "healthy,soup,bowl";
+  if(text.includes("cake"))return "healthy,cake,food";
+  if(text.includes("bread")||text.includes("roll"))return "healthy,bread,baked";
+  if(text.includes("yogurt"))return "yogurt,fruit,bowl";
+  if(text.includes("chicken"))return "grilled,chicken,healthy,meal";
+  if(text.includes("beef"))return "beef,broccoli,healthy";
+  if(text.includes("tofu"))return "tofu,broccoli,healthy";
+  if(text.includes("chickpea"))return "chickpea,salad,healthy";
+  return "healthy,food,bowl";
+ })();
+ const known=photos[recipe.id]?.url;
+ const seed=encodeURIComponent(recipe.id+"-"+recipe.name);
+ const src=known||`https://loremflickr.com/900/620/${foodQuery}?lock=${[...seed].reduce((n,ch)=>n+ch.charCodeAt(0),0)}`;
  return <img className={className} src={src} alt={recipe.name} loading="lazy" decoding="async" onError={e=>{const img=e.currentTarget;if(img.dataset.fallback)return;img.dataset.fallback="1";img.src=photos.f6.url}}/>;
 }
 
