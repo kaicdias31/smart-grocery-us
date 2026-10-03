@@ -31,25 +31,20 @@ p9:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Homemade_sweet
 p10:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg/960px-Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg",source:"https://commons.wikimedia.org/wiki/File:Nan,_Noon,_Paan,_Faan-_kolkata.jpg",credit:"TAPAS KUMAR HALDER · CC BY-SA 4.0"}
 };
 function RecipePhoto({recipe,className=""}:{recipe:Recipe;className?:string}){
- const themes:Record<string,{emoji:string;accent:string;label:string}>={
-  "Breakfast":{emoji:"🍓",accent:"#ff9b55",label:"BREAKFAST"},
-  "Lunch":{emoji:"🥗",accent:"#63e58b",label:"LUNCH"},
-  "Dinner":{emoji:"🍲",accent:"#ff765f",label:"DINNER"},
-  "Afternoon Snack":{emoji:"🥜",accent:"#ffd45b",label:"SNACK"},
-  "Salads":{emoji:"🥬",accent:"#74ef78",label:"FRESH"},
-  "Healthy Pasta":{emoji:"🍝",accent:"#ffb34f",label:"PASTA"},
-  "Smoothies & Shakes":{emoji:"🥤",accent:"#dc7dff",label:"SHAKE"},
-  "Healthy Desserts":{emoji:"🍓",accent:"#ff78a8",label:"DESSERT"},
-  "Healthy Cakes":{emoji:"🍰",accent:"#ff9c75",label:"CAKE"},
-  "Fitness Breads":{emoji:"🍞",accent:"#e8b86d",label:"BREAD"}
+ const categoryPhotos:Record<string,string>={
+  "Breakfast":"https://images.unsplash.com/photo-1517673400267-0251440c45dc?auto=format&fit=crop&w=900&q=82",
+  "Lunch":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=82",
+  "Dinner":"https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=82",
+  "Afternoon Snack":"https://images.unsplash.com/photo-1484723091739-30a097e8f929?auto=format&fit=crop&w=900&q=82",
+  "Salads":"https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=82",
+  "Healthy Pasta":"https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=900&q=82",
+  "Smoothies & Shakes":"https://images.unsplash.com/photo-1553530666-ba11a7da3888?auto=format&fit=crop&w=900&q=82",
+  "Healthy Desserts":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82",
+  "Healthy Cakes":"https://images.unsplash.com/photo-1578985545062-69928b1d9587?auto=format&fit=crop&w=900&q=82",
+  "Fitness Breads":"https://images.unsplash.com/photo-1509440159596-0249088772ff?auto=format&fit=crop&w=900&q=82"
  };
- const t=themes[recipe.category]||{emoji:"🍽️",accent:"#b6ff36",label:"FIT RECIPE"};
- return <div className={"recipeVisual "+className} style={{"--dish-accent":t.accent} as React.CSSProperties}>
-   <div className="visualGlow"/><div className="visualGrain"/>
-   <span className="visualBadge">{t.label}</span>
-   <div className="visualDish"><span>{t.emoji}</span><i>{recipe.emoji}</i><b>✦</b></div>
-   <div className="visualCopy"><small>SMART GROCERY</small><strong>{recipe.name}</strong></div>
- </div>
+ const src=categoryPhotos[recipe.category]||"https://images.unsplash.com/photo-1546069901-ba9599a7e63c?auto=format&fit=crop&w=900&q=82";
+ return <img className={className} src={src} alt={recipe.name} loading="lazy" decoding="async"/>;
 }
 
 const R=(id:string,name:string,category:string,time:number,cal:number,protein:number,carbs:number,emoji:string,free=false,ingredients:string[]=[],steps:string[]=[],allergens:string[]=[]):Recipe=>({id,name,category,time,cal,protein,carbs,fat:Math.max(5,Math.round((cal-protein*4-carbs*4)/9)),emoji,free,ingredients,steps,allergens});
