@@ -31,36 +31,27 @@ p9:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Homemade_sweet
 p10:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg/960px-Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg",source:"https://commons.wikimedia.org/wiki/File:Nan,_Noon,_Paan,_Faan-_kolkata.jpg",credit:"TAPAS KUMAR HALDER · CC BY-SA 4.0"}
 };
 function RecipePhoto({recipe,className=""}:{recipe:Recipe;className?:string}){
- const text=(recipe.name+" "+recipe.category+" "+recipe.ingredients.join(" ")).toLowerCase();
- const foodQuery=(()=>{
-  if(text.includes("shrimp"))return "shrimp,pasta,healthy";
-  if(text.includes("salmon"))return "salmon,healthy,meal";
-  if(text.includes("tuna"))return "tuna,healthy,food";
-  if(text.includes("chicken")&&text.includes("pasta"))return "chicken,pasta,healthy";
-  if(text.includes("turkey")&&text.includes("pasta"))return "turkey,pasta,tomato";
-  if(text.includes("pasta")||text.includes("penne")||text.includes("linguine"))return "healthy,pasta,food";
-  if(text.includes("pancake"))return "banana,pancakes,healthy";
-  if(text.includes("egg")&&text.includes("toast"))return "egg,toast,spinach";
-  if(text.includes("avocado")&&text.includes("toast"))return "avocado,toast";
-  if(text.includes("oat")&&text.includes("berry"))return "overnight,oats,berries";
-  if(text.includes("oat"))return "oatmeal,healthy,breakfast";
-  if(text.includes("smoothie")||text.includes("shake"))return "fruit,smoothie,healthy";
-  if(text.includes("salad"))return "healthy,salad,bowl";
-  if(text.includes("wrap"))return "healthy,wrap,food";
-  if(text.includes("soup"))return "healthy,soup,bowl";
-  if(text.includes("cake"))return "healthy,cake,food";
-  if(text.includes("bread")||text.includes("roll"))return "healthy,bread,baked";
-  if(text.includes("yogurt"))return "yogurt,fruit,bowl";
-  if(text.includes("chicken"))return "grilled,chicken,healthy,meal";
-  if(text.includes("beef"))return "beef,broccoli,healthy";
-  if(text.includes("tofu"))return "tofu,broccoli,healthy";
-  if(text.includes("chickpea"))return "chickpea,salad,healthy";
-  return "healthy,food,bowl";
- })();
- const known=photos[recipe.id]?.url;
- const seed=encodeURIComponent(recipe.id+"-"+recipe.name);
- const src=known||`https://loremflickr.com/900/620/${foodQuery}?lock=${[...seed].reduce((n,ch)=>n+ch.charCodeAt(0),0)}`;
- return <img className={className} src={src} alt={recipe.name} loading="lazy" decoding="async" onError={e=>{const img=e.currentTarget;if(img.dataset.fallback)return;img.dataset.fallback="1";img.src=photos.f6.url}}/>;
+ const t=(recipe.name+" "+recipe.ingredients.join(" ")).toLowerCase();
+ let src=photos.f6.url;
+ if(t.includes("salmon"))src=photos.f9.url;
+ else if(t.includes("wrap"))src=photos.f7.url;
+ else if(t.includes("soup")||t.includes("lentil"))src=photos.f8.url;
+ else if(t.includes("smoothie")||t.includes("shake"))src=photos.f12.url;
+ else if(t.includes("yogurt"))src=photos.f10.url;
+ else if(t.includes("pancake"))src=photos.f4.url;
+ else if(t.includes("avocado")&&t.includes("toast"))src=photos.f3.url;
+ else if(t.includes("egg")||t.includes("toast"))src=photos.f2.url;
+ else if(t.includes("oat")||t.includes("oatmeal"))src=photos.f11.url;
+ else if(t.includes("carrot")&&t.includes("cake"))src=photos.p4.url;
+ else if(t.includes("lemon")&&t.includes("cake"))src=photos.p5.url;
+ else if(t.includes("apple")&&t.includes("cake"))src=photos.p2.url;
+ else if(t.includes("cake"))src=photos.p1.url;
+ else if(t.includes("sweet potato")&&t.includes("bread"))src=photos.p9.url;
+ else if(t.includes("banana")&&t.includes("bread"))src=photos.p7.url;
+ else if(t.includes("bread")||t.includes("roll"))src=photos.p6.url;
+ else if(t.includes("chicken")||t.includes("turkey")||t.includes("beef")||t.includes("tuna")||t.includes("shrimp")||t.includes("tofu")||t.includes("pasta")||t.includes("rice")||t.includes("bowl"))src=photos.f5.url;
+ const exact=photos[recipe.id]?.url;
+ return <img className={className} src={exact||src} alt={recipe.name} loading="lazy" decoding="async"/>;
 }
 
 const R=(id:string,name:string,category:string,time:number,cal:number,protein:number,carbs:number,emoji:string,free=false,ingredients:string[]=[],steps:string[]=[],allergens:string[]=[]):Recipe=>({id,name,category,time,cal,protein,carbs,fat:Math.max(5,Math.round((cal-protein*4-carbs*4)/9)),emoji,free,ingredients,steps,allergens});
