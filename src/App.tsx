@@ -31,24 +31,10 @@ p9:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/f/f6/Homemade_sweet
 p10:{url:"https://thumb.wikimedia.org/wikipedia/commons/thumb/9/9d/Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg/960px-Nan%2C_Noon%2C_Paan%2C_Faan-_kolkata.jpg",source:"https://commons.wikimedia.org/wiki/File:Nan,_Noon,_Paan,_Faan-_kolkata.jpg",credit:"TAPAS KUMAR HALDER · CC BY-SA 4.0"}
 };
 function RecipePhoto({recipe,className=""}:{recipe:Recipe;className?:string}){
- const fixed=photos[recipe.id]?.url;
- const pools:Record<string,string[]>={
-  "Breakfast":[photos.f1.url,photos.f2.url,photos.f3.url,photos.f4.url,photos.f10.url,photos.f11.url],
-  "Lunch":[photos.f5.url,photos.f6.url,photos.f7.url,photos.f9.url],
-  "Dinner":[photos.f8.url,photos.f9.url,photos.f5.url,photos.f6.url],
-  "Afternoon Snack":[photos.f10.url,photos.f11.url,photos.f12.url,photos.f3.url],
-  "Salads":[photos.f6.url,photos.f9.url,photos.f5.url,photos.f10.url],
-  "Healthy Pasta":[photos.f5.url,photos.f6.url,photos.f9.url,photos.f7.url],
-  "Smoothies & Shakes":[photos.f12.url,photos.f10.url,photos.f1.url,photos.f11.url],
-  "Healthy Desserts":[photos.p1.url,photos.p2.url,photos.p3.url,photos.p5.url],
-  "Healthy Cakes":[photos.p1.url,photos.p2.url,photos.p3.url,photos.p4.url,photos.p5.url],
-  "Fitness Breads":[photos.p6.url,photos.p7.url,photos.p8.url,photos.p9.url,photos.p10.url]
- };
- const pool=pools[recipe.category]||[photos.f6.url];
- const hash=[...recipe.name].reduce((a,ch)=>a+ch.charCodeAt(0),0);
- const src=fixed||recipe.image||pool[hash%pool.length];
- const fallback=pool[(hash+1)%pool.length];
- return <img className={className} src={src} alt={recipe.name} loading="lazy" decoding="async" onError={e=>{const img=e.currentTarget;if(img.dataset.fallback)return;img.dataset.fallback="1";img.src=fallback}}/>;
+ const known=photos[recipe.id]?.url;
+ const seed=encodeURIComponent("healthy-food-"+recipe.id+"-"+recipe.name.toLowerCase().replace(/[^a-z0-9]+/g,"-"));
+ const src=known||`https://picsum.photos/seed/${seed}/900/620`;
+ return <img className={className} src={src} alt={recipe.name} loading="lazy" decoding="async" onError={e=>{const img=e.currentTarget;if(img.dataset.fallback)return;img.dataset.fallback="1";img.src=photos.f6.url}}/>;
 }
 
 const R=(id:string,name:string,category:string,time:number,cal:number,protein:number,carbs:number,emoji:string,free=false,ingredients:string[]=[],steps:string[]=[],allergens:string[]=[]):Recipe=>({id,name,category,time,cal,protein,carbs,fat:Math.max(5,Math.round((cal-protein*4-carbs*4)/9)),emoji,free,ingredients,steps,allergens});
@@ -111,7 +97,7 @@ const expansionPhotoSources=[photos.f1.source,photos.f2.source,photos.f3.source,
 let extraIndex=1;
 Object.entries(expansion).forEach(([category,names])=>names.forEach((name,i)=>{
  const b=categoryBase[category];
- recipes.push({id:`x${extraIndex++}`,name,category,time:b.time+(i%4)*3,cal:b.cal+(i%5)*8,protein:b.protein+(i%4)*2,carbs:b.carbs+(i%3)*3,fat:Math.max(5,Math.round(((b.cal+(i%5)*8)-(b.protein+(i%4)*2)*4-(b.carbs+(i%3)*3)*4)/9)),emoji:"🍽️",free:false,ingredients:[...b.ingredients],steps:[`Prepare and measure all ingredients for ${name}.`,category==="Smoothies & Shakes"?"Blend until completely smooth and creamy.":"Cook or assemble the protein and base using minimal added oil.",category==="Salads"?"Toss with the vegetables and dressing just before serving.":category==="Healthy Desserts"?"Combine, portion and chill or bake until set.":"Combine all components, season to taste and serve fresh."],allergens:[...b.allergens],image:expansionPhotoUrls[(extraIndex-2)%expansionPhotoUrls.length],imageSource:expansionPhotoSources[(extraIndex-2)%expansionPhotoSources.length],imageCredit:"Licensed food photo · Wikimedia Commons"});
+ recipes.push({id:`x${extraIndex++}`,name,category,time:b.time+(i%4)*3,cal:b.cal+(i%5)*8,protein:b.protein+(i%4)*2,carbs:b.carbs+(i%3)*3,fat:Math.max(5,Math.round(((b.cal+(i%5)*8)-(b.protein+(i%4)*2)*4-(b.carbs+(i%3)*3)*4)/9)),emoji:"🍽️",free:false,ingredients:[...b.ingredients.map((x,j)=>j===0?`${x} — for ${name}`:x)],steps:[`Set out and measure every ingredient for ${name}. Wash fresh produce, preheat equipment if needed, and prepare a clean work surface.`,`Prepare the main components for ${name}: trim, slice, mash or season them before cooking so everything finishes at the right time.`,category==="Smoothies & Shakes"?"Add the liquid first, then the remaining ingredients. Blend 45–60 seconds, scrape the sides, and blend again until completely smooth.":category==="Salads"?"Cook any protein or grain first and let it cool slightly. Chop the vegetables into even pieces so every bite is balanced.":"Cook the main protein or base over medium heat using minimal added oil, turning or stirring as needed until evenly cooked.",category==="Healthy Desserts"?"Mix until uniform, portion evenly, then chill or bake until the center is set. Allow it to rest before serving.":category==="Healthy Pasta"?"Cook pasta until al dente, reserve a little cooking water, then toss with the prepared protein, vegetables and sauce until evenly coated.":"Combine the cooked components with the vegetables and remaining ingredients. Season gradually and heat only until everything is ready.",`Plate ${name} immediately. Finish with herbs, fruit, seeds or seasoning from the ingredient list and serve at the recommended portion.`],allergens:[...b.allergens],image:expansionPhotoUrls[(extraIndex-2)%expansionPhotoUrls.length],imageSource:expansionPhotoSources[(extraIndex-2)%expansionPhotoSources.length],imageCredit:"Licensed food photo · Wikimedia Commons"});
 }));
 
 const nav=[["dashboard","Dashboard",Home],["today","My Recipes",ChefHat],["recipes","Recipes",ChefHat],["workouts","Workouts",Activity],["shop","Shop",ShoppingBag],["settings","Settings",Settings]] as const;
