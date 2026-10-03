@@ -29,3 +29,6 @@
 .food.photoFood{height:230px}.food.photoFood>.recipeVisual{height:100%}.recipe:hover .recipeVisual .visualDish{transform:rotate(-3deg) scale(1.035);transition:.25s ease}
 .modalFood.photoFood{height:290px}.modalFood.photoFood>.recipeVisual{height:100%;min-height:290px}.modalFood .visualDish{width:160px;height:160px}.modalFood .visualDish span{font-size:72px}.modalFood .visualCopy strong{font-size:26px}
 @media(max-width:600px){.food.photoFood{height:205px}.visualDish{width:110px;height:110px}.visualDish span{font-size:50px}.visualCopy strong{font-size:16px}.modalFood.photoFood{height:240px}}
+
+/* Photographic recipe hero overrides */
+.food.photoFood{height:230px;background:#101a13}.food.photoFood>img{display:block;width:100%;height:100%;object-fit:cover;object-position:center}.modalFood.photoFood{height:300px;background:#101a13}.modalFood.photoFood>img{display:block;width:100%;height:100%;object-fit:cover}.recipeVisual{display:none!important}
