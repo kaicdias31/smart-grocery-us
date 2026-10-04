@@ -159,3 +159,20 @@
   font-weight:800;
   line-height:1;
 }
+
+/* Grocery check visible beside ingredient */
+.grocerySingleList .groceryItem{display:flex!important;align-items:center!important;cursor:pointer!important}
+.grocerySingleList .groceryItem input[type="checkbox"]{display:none!important}
+.grocerySingleList .groceryItem::before{
+ content:"☐";
+ display:inline-block;
+ width:22px;
+ flex:0 0 22px;
+ margin-right:8px;
+ font-size:20px;
+ line-height:1;
+ font-weight:400;
+ background:transparent!important;
+ border:0!important;
+}
+.grocerySingleList .groceryItem.done::before{content:"✓";font-weight:800}
