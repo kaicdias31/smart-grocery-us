@@ -60,3 +60,9 @@
 .categoryBanner:before{background:#050605}
 .categoryBanner img{display:none!important}
 .categoryShade{background:#050605}
+
+.selectedCategoryHead{display:flex;align-items:center;justify-content:space-between;gap:16px;margin:24px 0 12px;padding-top:4px}
+.selectedCategoryHead small{color:#7dff9b;font-size:10px;font-weight:800;letter-spacing:.14em}
+.selectedCategoryHead h3{margin:4px 0 0;color:#fff;font-size:22px}
+.selectedCategoryHead button{border:1px solid rgba(57,255,136,.45);background:#080b09;color:#a7ffb9;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
+@media(max-width:560px){.selectedCategoryHead{align-items:flex-end}.selectedCategoryHead button{padding:9px 11px;font-size:12px}}
