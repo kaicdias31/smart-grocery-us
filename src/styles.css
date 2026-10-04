@@ -176,3 +176,10 @@
  border:0!important;
 }
 .grocerySingleList .groceryItem.done::before{content:"✓";font-weight:800}
+
+/* Quick recipe filters */
+.quickFilters{display:flex;gap:9px;overflow-x:auto;padding:4px 0 16px;scrollbar-width:none}
+.quickFilters::-webkit-scrollbar{display:none}
+.quickFilters button{flex:0 0 auto;border:1px solid #2d3830;background:transparent;color:#b8c1ba;border-radius:999px;padding:9px 14px;font:inherit;font-size:13px;font-weight:700;cursor:pointer;transition:.18s ease}
+.quickFilters button:hover{border-color:#8dff43;color:#fff}
+.quickFilters button.active{background:#8dff43;color:#071006;border-color:#8dff43}
