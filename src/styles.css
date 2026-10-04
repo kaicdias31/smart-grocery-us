@@ -228,3 +228,22 @@
 .dashboardQuickGrid>button>svg,
 .dashboardQuickGrid .quickCoin,
 .dashboardQuickGrid>button em{color:#8dff43}
+
+/* Re-apply unified Dashboard quick-card appearance */
+.dashboardQuickGrid>button{
+  background:#101612!important;
+  border:1px solid #2b382e!important;
+  border-radius:18px!important;
+  box-shadow:none!important;
+  transform:none!important;
+  color:#fff!important;
+}
+.dashboardQuickGrid>button:hover{
+  background:#101612!important;
+  border-color:#3b4a3e!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+.dashboardQuickGrid>button>svg,
+.dashboardQuickGrid .quickCoin,
+.dashboardQuickGrid>button em{color:#8dff43!important}
