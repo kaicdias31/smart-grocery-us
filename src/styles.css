@@ -66,3 +66,11 @@
 .selectedCategoryHead h3{margin:4px 0 0;color:#fff;font-size:22px}
 .selectedCategoryHead button{border:1px solid rgba(57,255,136,.45);background:#080b09;color:#a7ffb9;border-radius:12px;padding:10px 14px;font-weight:700;cursor:pointer}
 @media(max-width:560px){.selectedCategoryHead{align-items:flex-end}.selectedCategoryHead button{padding:9px 11px;font-size:12px}}
+
+/* Recipe image clarity: show more of the original photo instead of aggressively enlarging/cropping it */
+.recipe .food{height:240px;background:#050805}
+.recipe .food>img{width:100%;height:100%;object-fit:contain;object-position:center;background:#050805;image-rendering:auto;transform:none!important}
+.recipe:hover .photoFood>img{transform:none!important}
+.detailHero{height:min(460px,52vw);background:#050805}
+.detailHero>img{width:100%;height:100%;object-fit:contain;object-position:center;background:#050805;image-rendering:auto}
+@media(max-width:620px){.recipe .food{height:250px}.detailHero{height:310px}}
