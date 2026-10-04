@@ -74,3 +74,44 @@
 .detailHero{height:min(460px,52vw);background:#050805}
 .detailHero>img{width:100%;height:100%;object-fit:contain;object-position:center;background:#050805;image-rendering:auto}
 @media(max-width:620px){.recipe .food{height:250px}.detailHero{height:310px}}
+
+
+/* Light Meals image alignment fix */
+.recipe .food>img[src*="01-egg-and-avocado-toasts.png"],
+.recipe .food>img[src*="02-pear-and-cottage-cheese-toast.png"],
+.recipe .food>img[src*="03-herbed-soft-scrambled-eggs-on-toast.png"],
+.recipe .food>img[src*="04-spinach-and-feta-egg-white-omelet.png"],
+.recipe .food>img[src*="05-sugar-free-yogurt-parfait-with-fresh-berries.png"],
+.recipe .food>img[src*="06-cinnamon-apple-overnight-oats.png"],
+.recipe .food>img[src*="07-baked-pumpkin-oatmeal.png"],
+.recipe .food>img[src*="08-power-oats-mug-muffin.png"],
+.recipe .food>img[src*="09-plum-muffins.png"],
+.recipe .food>img[src*="10-cranberry-almond-muffins.png"],
+.recipe .food>img[src*="11-savory-asparagus-custards.png"],
+.recipe .food>img[src*="12-asparagus-and-bok-choy-frittata.png"],
+.recipe .food>img[src*="13-mini-vegetable-frittata.png"]{
+ object-fit:cover;
+ object-position:center;
+ width:100%;
+ height:100%;
+ transform:none!important;
+}
+.detailHero>img[src*="01-egg-and-avocado-toasts.png"],
+.detailHero>img[src*="02-pear-and-cottage-cheese-toast.png"],
+.detailHero>img[src*="03-herbed-soft-scrambled-eggs-on-toast.png"],
+.detailHero>img[src*="04-spinach-and-feta-egg-white-omelet.png"],
+.detailHero>img[src*="05-sugar-free-yogurt-parfait-with-fresh-berries.png"],
+.detailHero>img[src*="06-cinnamon-apple-overnight-oats.png"],
+.detailHero>img[src*="07-baked-pumpkin-oatmeal.png"],
+.detailHero>img[src*="08-power-oats-mug-muffin.png"],
+.detailHero>img[src*="09-plum-muffins.png"],
+.detailHero>img[src*="10-cranberry-almond-muffins.png"],
+.detailHero>img[src*="11-savory-asparagus-custards.png"],
+.detailHero>img[src*="12-asparagus-and-bok-choy-frittata.png"],
+.detailHero>img[src*="13-mini-vegetable-frittata.png"]{
+ object-fit:cover;
+ object-position:center;
+ width:100%;
+ height:100%;
+ transform:none!important;
+}
