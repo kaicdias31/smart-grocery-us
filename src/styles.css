@@ -193,3 +193,21 @@
 .coinWallet strong{font-size:28px;color:#fff}
 .coinWallet small{width:100%;color:#8e9990}
 .coinIcon{font-size:34px;margin-bottom:4px}
+
+/* Dashboard focused on the current recipe + Fit Coin experience */
+.dashboardHeroActions{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px}
+.dashboardStats{margin-bottom:20px}
+.dashboardQuickGrid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.dashboardQuickGrid>button{display:flex;align-items:center;gap:13px;text-align:left;border:1px solid #263229;background:#0e1410;color:#fff;border-radius:16px;padding:18px;cursor:pointer;transition:.18s ease;font:inherit}
+.dashboardQuickGrid>button:hover{border-color:#8dff43;transform:translateY(-2px);background:#121a14}
+.dashboardQuickGrid>button>svg,.dashboardQuickGrid .quickCoin{flex:0 0 auto;color:#8dff43}
+.dashboardQuickGrid .quickCoin{font-size:23px}
+.dashboardQuickGrid>button span:not(.quickCoin){display:flex;flex-direction:column;gap:5px;min-width:0;flex:1}
+.dashboardQuickGrid>button b{font-size:14px}
+.dashboardQuickGrid>button small{color:#8e9990;line-height:1.45}
+.dashboardQuickGrid>button em{color:#8dff43;font-style:normal;font-size:20px}
+.dashboardWelcome{margin-top:18px}
+.dashboardWelcome h3{margin:7px 0}
+.dashboardWelcome p{color:#9aa49c;max-width:650px;line-height:1.6}
+.dashboardWelcome .primary{margin-top:10px}
+@media(max-width:800px){.dashboardQuickGrid{grid-template-columns:1fr}.dashboardHeroActions{width:100%}.dashboardHeroActions button{flex:1}}
