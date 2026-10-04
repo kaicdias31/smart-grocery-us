@@ -55,3 +55,8 @@
 .categoryBanner:hover,.categoryBanner.active{transform:translateY(-2px);box-shadow:0 0 0 1px rgba(255,255,255,.12),0 0 28px rgba(57,255,136,.18)}
 @media(max-width:900px){.categoryShowcase{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.categoryShowcase{grid-template-columns:1fr;gap:11px}.categoryBanner{min-height:130px}.categoryCopy b{font-size:18px}}
+
+/* Category cards: black background, rainbow border, no artwork */
+.categoryBanner:before{background:#050605}
+.categoryBanner img{display:none!important}
+.categoryShade{background:#050605}
