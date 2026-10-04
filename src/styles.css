@@ -247,3 +247,33 @@
 .dashboardQuickGrid>button>svg,
 .dashboardQuickGrid .quickCoin,
 .dashboardQuickGrid>button em{color:#8dff43!important}
+
+/* App-style authentication entry screen */
+.loginPage{min-height:100vh;background:#070b08;display:grid;place-items:center;padding:24px;position:relative;overflow:hidden;color:#fff}
+.loginGlow{position:absolute;width:520px;height:520px;border-radius:50%;background:rgba(141,255,67,.08);filter:blur(90px);top:-220px;right:-160px;pointer-events:none}
+.loginCard{width:min(100%,440px);background:#0d130f;border:1px solid #263229;border-radius:24px;padding:32px;position:relative;box-shadow:0 24px 80px rgba(0,0,0,.35)}
+.loginBrand{display:flex;align-items:center;gap:11px;font-size:13px;letter-spacing:.08em;margin-bottom:36px}
+.loginBrand>span{display:grid;place-items:center;width:42px;height:42px;border-radius:13px;background:#8dff43;color:#071007;font-weight:900;letter-spacing:0}
+.loginBrand b{color:#8dff43}
+.loginHeading h1{font-size:29px;margin:8px 0 8px;letter-spacing:-.03em}
+.loginHeading p{color:#89938c;margin:0 0 28px;line-height:1.5}
+.loginForm{display:flex;flex-direction:column;gap:17px}
+.loginForm>label>span{display:block;font-size:12px;font-weight:700;margin:0 0 8px;color:#c9d0cb}
+.loginInput{height:52px;display:flex;align-items:center;gap:10px;background:#090e0b;border:1px solid #2b382e;border-radius:14px;padding:0 14px;transition:.18s}
+.loginInput:focus-within{border-color:#8dff43;box-shadow:0 0 0 3px rgba(141,255,67,.08)}
+.loginInput svg{color:#718078;flex:0 0 auto}
+.loginInput input{flex:1;min-width:0;border:0;outline:0;background:transparent;color:#fff;font:inherit}
+.loginInput input::placeholder{color:#56615a}
+.passwordToggle,.forgotPassword{border:0;background:transparent;color:#8dff43;cursor:pointer;padding:5px}
+.passwordToggle{display:grid;place-items:center}
+.loginOptions{display:flex;align-items:center;justify-content:space-between;gap:12px;font-size:12px}
+.rememberMe{display:flex;align-items:center;gap:7px;color:#9ba49e}
+.rememberMe input{accent-color:#8dff43}
+.forgotPassword{font-size:12px}
+.loginSubmit,.createAccount{height:52px;border-radius:14px;font:inherit;font-weight:800;cursor:pointer}
+.loginSubmit{border:0;background:#8dff43;color:#071007}
+.createAccount{width:100%;border:1px solid #344137;background:transparent;color:#fff}
+.loginDivider{display:flex;align-items:center;gap:12px;color:#68736c;font-size:11px;margin:23px 0 16px}
+.loginDivider:before,.loginDivider:after{content:"";height:1px;background:#263029;flex:1}
+.loginDemoNote{display:block;text-align:center;color:#5f6963;margin-top:14px;font-size:10px}
+@media(max-width:520px){.loginPage{padding:14px}.loginCard{padding:25px 20px;border-radius:20px}.loginHeading h1{font-size:25px}}
