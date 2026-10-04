@@ -121,13 +121,13 @@ function GroceryList({selected,setSelected,checked,setChecked}:{selected:string[
  const ingredientNames:string[]=[];
  chosen.forEach(r=>{(r.ingredients||[]).forEach(raw=>{const name=clean(raw);if(name&&!ingredientNames.some(x=>x.toLowerCase()===name.toLowerCase()))ingredientNames.push(name)})});
  const changeSelection=(id:string)=>{
-  setGenerated(false);
   setChecked([]);
   setSelected([id]);
+  setGenerated(true);
  };
  const toggle=(name:string)=>setChecked(checked.includes(name)?checked.filter(x=>x!==name):checked.concat(name));
  return <><section className="intro"><span className="eyebrow">SHOP SMARTER</span><h2>Grocery List</h2><p>Choose one recipe and generate its supermarket checklist.</p></section>
- {!generated&&<section className="panel"><div className="sectionHead"><div><small>SELECT A RECIPE</small><h3>What do you want to cook?</h3></div><span>{selected.length?"1 selected":"Select one"}</span></div><div className="groceryRecipePicker">{recipes.map(r=><button type="button" key={r.id} className={"groceryRecipeChoice "+(selected.includes(r.id)?"selected":"")} onClick={()=>changeSelection(r.id)}><RecipePhoto recipe={r}/><span><b>{r.name}</b><small>{r.category} · {(r.ingredients||[]).length} ingredients</small></span><em>{selected.includes(r.id)?"✓":"+"}</em></button>)}</div>{selected.length>0&&<div className="generateGroceryBar"><div><b>1 recipe selected</b><small>Generate your shopping list.</small></div><button className="primary" type="button" onClick={()=>setGenerated(true)}>✓ Generate Grocery List</button></div>}</section>}
+ {!generated&&<section className="panel"><div className="sectionHead"><div><small>SELECT A RECIPE</small><h3>What do you want to cook?</h3></div><span>{selected.length?"1 selected":"Select one"}</span></div><div className="groceryRecipePicker">{recipes.map(r=><button type="button" key={r.id} className={"groceryRecipeChoice "+(selected.includes(r.id)?"selected":"")} onClick={()=>changeSelection(r.id)}><RecipePhoto recipe={r}/><span><b>{r.name}</b><small>{r.category} · {(r.ingredients||[]).length} ingredients</small></span><em>{selected.includes(r.id)?"✓":"+"}</em></button>)}</div></section>}
  {generated&&selected.length>0&&<section className="rainbowGroceryCard"><div className="rainbowInner"><div className="shoppingListHead"><div><small>SUPERMARKET CHECKLIST</small><h2>Grocery List</h2></div><div className="groceryActions"><button type="button" className="cardAction" onClick={()=>setGenerated(false)}>← Choose Another Recipe</button><button type="button" className="cardAction" onClick={()=>setChecked([])}>Clear Checks</button></div></div><div className="grocerySingleList"><h3>INGREDIENTS</h3>{ingredientNames.map(name=><label className={"groceryItem "+(checked.includes(name)?"done":"")} key={name.toLowerCase()}><input type="checkbox" checked={checked.includes(name)} onChange={()=>toggle(name)}/><span><b>{name}</b></span></label>)}</div></div></section>}</>
 }
 
