@@ -277,3 +277,5 @@
 .loginDivider:before,.loginDivider:after{content:"";height:1px;background:#263029;flex:1}
 .loginDemoNote{display:block;text-align:center;color:#5f6963;margin-top:14px;font-size:10px}
 @media(max-width:520px){.loginPage{padding:14px}.loginCard{padding:25px 20px;border-radius:20px}.loginHeading h1{font-size:25px}}
+
+.loginError{border:1px solid rgba(255,100,100,.25);background:rgba(255,100,100,.07);color:#ff9d9d;border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.4}
