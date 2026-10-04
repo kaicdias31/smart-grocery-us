@@ -211,3 +211,20 @@
 .dashboardWelcome p{color:#9aa49c;max-width:650px;line-height:1.6}
 .dashboardWelcome .primary{margin-top:10px}
 @media(max-width:800px){.dashboardQuickGrid{grid-template-columns:1fr}.dashboardHeroActions{width:100%}.dashboardHeroActions button{flex:1}}
+
+/* Match Dashboard navigation cards to the app panel/card system */
+.dashboardQuickGrid>button{
+  background:#101612!important;
+  border:1px solid #2b382e!important;
+  border-radius:18px!important;
+  box-shadow:none!important;
+  transform:none!important;
+}
+.dashboardQuickGrid>button:hover{
+  background:#101612!important;
+  border-color:#3b4a3e!important;
+  transform:none!important;
+}
+.dashboardQuickGrid>button>svg,
+.dashboardQuickGrid .quickCoin,
+.dashboardQuickGrid>button em{color:#8dff43}
