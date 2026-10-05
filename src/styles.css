@@ -279,3 +279,14 @@
 @media(max-width:520px){.loginPage{padding:14px}.loginCard{padding:25px 20px;border-radius:20px}.loginHeading h1{font-size:25px}}
 
 .loginError{border:1px solid rgba(255,100,100,.25);background:rgba(255,100,100,.07);color:#ff9d9d;border-radius:12px;padding:10px 12px;font-size:12px;line-height:1.4}
+
+/* My Recipes */
+.myRecipesIntro{margin-bottom:24px}
+.myRecipesIntro>p{color:var(--muted);margin-top:8px}
+.myRecipesSummary{display:flex;align-items:center;justify-content:flex-end;margin:0 0 16px;color:var(--muted);font-size:12px}
+.myRecipesSummary b{color:var(--lime);font-size:15px}
+.myRecipesEmpty{min-height:300px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:12px}
+.myRecipesEmpty>svg{color:var(--lime)}
+.myRecipesEmpty h3{margin:2px 0 0}
+.myRecipesEmpty p{max-width:420px;color:var(--muted);margin:0 0 8px}
+.unlockedBadge{position:absolute;left:12px;top:12px;display:flex;align-items:center;gap:5px;background:rgba(7,16,7,.88);border:1px solid rgba(141,255,67,.35);color:var(--lime);padding:6px 9px;border-radius:999px;font-size:9px;font-weight:800;text-transform:uppercase;backdrop-filter:blur(8px)}
