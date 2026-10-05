@@ -293,3 +293,5 @@
 
 .loginInfo{padding:10px 12px;border:1px solid rgba(141,255,67,.28);border-radius:10px;color:var(--lime);background:rgba(141,255,67,.06);font-size:12px;line-height:1.45}
 .loginSubmit:disabled,.forgotPassword:disabled{opacity:.6;cursor:wait}
+
+.logoutButton{margin-top:10px;width:max-content}
